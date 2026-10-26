@@ -4,8 +4,12 @@
  * work well for content-centric websites.
  */
 
-/* Professional indigo/neutral color palette */
+/* ==========================================================================
+   Theme tokens — light
+   ========================================================================== */
+
 :root {
+  /* Brand ramp (indigo) */
   --ifm-color-primary: #4f46e5;
   --ifm-color-primary-dark: #4338ca;
   --ifm-color-primary-darker: #3730a3;
@@ -13,17 +17,672 @@
   --ifm-color-primary-light: #6366f1;
   --ifm-color-primary-lighter: #818cf8;
   --ifm-color-primary-lightest: #c7d2fe;
-  --ifm-code-font-size: 95%;
+
+  /* Surfaces */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+  --ds-surface-subtle: #f8f9fc;
+  --ds-surface-raised: #ffffff;
+  --ds-border: #e6e8f0;
+  --ds-border-strong: #d4d7e3;
+  --ds-accent-soft: rgba(79, 70, 229, 0.08);
+  --ds-accent-glow: rgba(99, 102, 241, 0.16);
+
+  /* Typography */
+  --ifm-font-family-base: ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace: ui-monospace, SFMono-Regular, 'SF Mono',
+    Menlo, Consolas, 'Liberation Mono', monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 650;
+  --ifm-heading-line-height: 1.25;
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-h2-font-size: 1.75rem;
+  --ifm-h3-font-size: 1.3rem;
+
+  /* Shape and depth */
+  --ifm-global-radius: 10px;
+  --ds-radius-sm: 8px;
+  --ds-radius-lg: 16px;
+  --ds-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --ds-shadow-md: 0 4px 16px -4px rgba(16, 24, 40, 0.1),
+    0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --ds-shadow-lg: 0 24px 48px -16px rgba(16, 24, 40, 0.18);
+
+  /* Chrome */
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.82);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-item-padding-horizontal: 0.85rem;
+  --ifm-toc-border-color: var(--ds-border);
+  --ifm-hr-border-color: var(--ds-border);
+  --ifm-table-border-color: var(--ds-border);
+  --ifm-table-head-background: var(--ds-surface-subtle);
+  --ifm-table-stripe-background: transparent;
+  --ifm-code-font-size: 88%;
+  --ifm-code-background: var(--ds-accent-soft);
+  --ifm-code-border-radius: 6px;
+  --ifm-blockquote-color: var(--ifm-color-emphasis-700);
+  --ifm-blockquote-border-color: var(--ifm-color-primary-lightest);
+  --ifm-footer-background-color: #15161c;
+
   --docusaurus-highlighted-code-line-bg: rgba(79, 70, 229, 0.1);
 }
 
+/* ==========================================================================
+   Theme tokens — dark
+   ========================================================================== */
+
 [data-theme='dark'] {
-  --ifm-color-primary: #818cf8;
-  --ifm-color-primary-dark: #6366f1;
-  --ifm-color-primary-darker: #4f46e5;
-  --ifm-color-primary-darkest: #4338ca;
-  --ifm-color-primary-light: #a5b4fc;
-  --ifm-color-primary-lighter: #c7d2fe;
-  --ifm-color-primary-lightest: #e0e7ff;
+  --ifm-color-primary: #a5b4fc;
+  --ifm-color-primary-dark: #818cf8;
+  --ifm-color-primary-darker: #6366f1;
+  --ifm-color-primary-darkest: #4f46e5;
+  --ifm-color-primary-light: #c7d2fe;
+  --ifm-color-primary-lighter: #dde3ff;
+  --ifm-color-primary-lightest: #eef1ff;
+
+  --ifm-background-color: #0c0d12;
+  --ifm-background-surface-color: #0c0d12;
+  --ds-surface-subtle: #12141c;
+  --ds-surface-raised: #15171f;
+  --ds-border: #24273a;
+  --ds-border-strong: #343955;
+  --ds-accent-soft: rgba(129, 140, 248, 0.14);
+  --ds-accent-glow: rgba(129, 140, 248, 0.22);
+
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ds-shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
+  --ds-shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+
+  --ifm-navbar-background-color: rgba(12, 13, 18, 0.8);
+  --ifm-footer-background-color: #090a0e;
+
   --docusaurus-highlighted-code-line-bg: rgba(129, 140, 248, 0.2);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'calt';
+}
+
+::selection {
+  background: var(--ds-accent-glow);
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  transition: color 150ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.navbar {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.navbar__title {
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.navbar__logo {
+  height: 1.75rem;
+  margin-right: 0.6rem;
+}
+
+.navbar__link {
+  font-size: 0.925rem;
+  font-weight: 500;
+}
+
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+.navbar-sidebar {
+  backdrop-filter: none;
+}
+
+/* Icon-only links for external destinations; the label is kept for
+   assistive technology through aria-label on the navbar item. */
+.navbar__item--icon {
+  display: flex;
+  align-items: center;
+  font-size: 0;
+  opacity: 0.75;
+  transition: opacity 150ms ease;
+}
+
+.navbar__item--icon:hover {
+  opacity: 1;
+}
+
+.navbar__item--icon::before {
+  content: '';
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+.navbar__item--github::before {
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .96-.3 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.48 3.14-1.18 3.14-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .96-.3 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.48 3.14-1.18 3.14-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z'/%3E%3C/svg%3E");
+}
+
+.navbar__item--npm::before {
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z'/%3E%3C/svg%3E");
+}
+
+/* The external-link glyph would double up next to a brand icon */
+.navbar__item--icon svg {
+  display: none;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--ds-border) !important;
+}
+
+.menu {
+  padding: 1rem 0.75rem !important;
+  font-size: 0.9rem;
+}
+
+.menu__link {
+  border-radius: var(--ds-radius-sm);
+  font-weight: 450;
+  line-height: 1.4;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--ds-accent-soft);
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible > .menu__link--active {
+  background: transparent;
+}
+
+/* Category headers read as section labels, not as links */
+.menu > .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.menu__list .menu__list {
+  margin-left: 0.4rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--ds-border);
+}
+
+.menu__caret:before {
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   Content
+   ========================================================================== */
+
+.markdown > h1 {
+  margin-bottom: 1.25rem;
+}
+
+.markdown > h2 {
+  margin-top: 3rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ds-border);
+}
+
+.markdown > h3 {
+  margin-top: 2rem;
+}
+
+.markdown a:not(.card) {
+  font-weight: 500;
+}
+
+.markdown img {
+  border-radius: var(--ds-radius-sm);
+}
+
+.markdown blockquote {
+  border-left-width: 3px;
+  border-radius: 0 var(--ds-radius-sm) var(--ds-radius-sm) 0;
+  background: var(--ds-surface-subtle);
+}
+
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  font-size: 0.9rem;
+}
+
+.markdown table th,
+.markdown table td {
+  border: 0;
+  border-bottom: 1px solid var(--ds-border);
+  padding: 0.7rem 0.9rem;
+}
+
+.markdown table th {
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.markdown table tr:last-child td {
+  border-bottom: 0;
+}
+
+.markdown table code {
+  white-space: nowrap;
+}
+
+/* Prop tables are usually type-heavy: keep the first column tight */
+.markdown table td:first-child {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Code
+   ========================================================================== */
+
+code {
+  border: 1px solid transparent;
+  font-weight: 500;
+}
+
+.theme-code-block {
+  border-radius: var(--ds-radius-sm) !important;
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm) !important;
+}
+
+.theme-code-block > div:first-child:not([class*='codeBlockContent']) {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+div[class^='codeBlockTitle'] {
+  background: var(--ds-surface-subtle) !important;
+}
+
+/* ==========================================================================
+   Admonitions
+   ========================================================================== */
+
+.theme-admonition {
+  border: 1px solid var(--ds-border);
+  border-left-width: 3px;
+  border-radius: var(--ds-radius-sm);
+  box-shadow: none;
+  font-size: 0.94rem;
+}
+
+/* ==========================================================================
+   Table of contents
+   ========================================================================== */
+
+.table-of-contents {
+  font-size: 0.82rem;
+  border-left: 1px solid var(--ds-border);
+}
+
+.table-of-contents__link {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link--active code {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+/* ==========================================================================
+   Breadcrumbs and pagination
+   ========================================================================== */
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: var(--ds-accent-soft);
+  color: var(--ifm-color-primary);
+}
+
+.pagination-nav__link {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--ds-shadow-md);
+  transform: translateY(-2px);
+}
+
+.pagination-nav__sublabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  border-radius: var(--ds-radius-sm);
+  transition: transform 150ms ease, box-shadow 150ms ease,
+    background 150ms ease, border-color 150ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid var(--ds-border);
+  font-size: 0.9rem;
+}
+
+.footer__title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.footer__link-item {
+  transition: opacity 150ms ease;
+}
+
+.footer__copyright {
+  font-size: 0.82rem;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   Scrollbars
+   ========================================================================== */
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--ds-border-strong);
+    border: 3px solid var(--ifm-background-color);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ifm-color-emphasis-500);
+  }
+}
+
+/* ==========================================================================
+   Motion preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .button:hover,
+  .pagination-nav__link:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Preview surface
+
+   @milfushi/ui ships unstyled markup, so the demo surfaces in this site
+   (component previews and the homepage showcase) supply their own styling.
+   This is documentation styling only — it is not part of the package.
+   ========================================================================== */
+
+.ds-preview {
+  --ds-preview-control-height: 2.5rem;
+  color: var(--ifm-font-color-base);
+}
+
+/* Buttons */
+
+.ds-preview button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--ds-preview-control-height);
+  padding: 0 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--ds-radius-sm);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease,
+    box-shadow 150ms ease, transform 150ms ease;
+}
+
+.ds-preview button[data-variant='primary'] {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  box-shadow: var(--ds-shadow-sm);
+}
+
+[data-theme='dark'] .ds-preview button[data-variant='primary'] {
+  color: #10121a;
+}
+
+.ds-preview button[data-variant='primary']:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+}
+
+.ds-preview button[data-variant='secondary'] {
+  background: var(--ds-surface-raised);
+  border-color: var(--ds-border-strong);
+  color: var(--ifm-color-emphasis-900);
+}
+
+.ds-preview button[data-variant='secondary']:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.ds-preview button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ds-preview button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ds-preview button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Text inputs */
+
+.ds-preview label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.ds-preview input[type='text'],
+.ds-preview input[type='email'],
+.ds-preview input[type='password'],
+.ds-preview input[type='search'],
+.ds-preview input[type='number'],
+.ds-preview input[type='tel'],
+.ds-preview input[type='url'],
+.ds-preview input:not([type]) {
+  width: 100%;
+  min-width: 14rem;
+  min-height: var(--ds-preview-control-height);
+  padding: 0 0.75rem;
+  border: 1px solid var(--ds-border-strong);
+  border-radius: var(--ds-radius-sm);
+  background: var(--ifm-background-color);
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ds-preview input::placeholder {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.ds-preview input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ds-accent-soft);
+}
+
+.ds-preview input:disabled {
+  background: var(--ds-surface-subtle);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ds-preview input[data-variant='error'] {
+  border-color: #ef4444;
+}
+
+.ds-preview input[data-variant='error']:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+.ds-preview input[data-variant='success'] {
+  border-color: #10b981;
+}
+
+.ds-preview input[data-variant='success']:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+/* Helper text sits right after the input inside the field wrapper */
+.ds-preview input + span {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.ds-preview div[data-variant='error'] span {
+  color: #ef4444;
+}
+
+.ds-preview div[data-variant='success'] span {
+  color: #10b981;
+}
+
+/* Checkboxes: input first, label after */
+
+.ds-preview input[type='checkbox'] {
+  width: 1.05rem;
+  height: 1.05rem;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--ifm-color-primary);
+  cursor: pointer;
+}
+
+.ds-preview input[type='checkbox'] + label {
+  margin: 0;
+  font-weight: 450;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.ds-preview input[type='checkbox']:disabled,
+.ds-preview input[type='checkbox']:disabled + label {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* The Checkbox wrapper is a plain div holding the box and its label */
+.ds-preview div:has(> input[type='checkbox']) {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }

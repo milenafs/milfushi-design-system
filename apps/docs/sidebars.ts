@@ -11,23 +11,49 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  The sidebars can be generated from the filesystem, or explicitly defined here.
 
  Create as many sidebars as you want.
+
+ The entries between the AUTO-GENERATED markers are rewritten by
+ `npm run generate-docs` — keep the markers in place.
  */
 const sidebars: SidebarsConfig = {
   docsSidebar: [
-    'introduction/index',
-    'getting-started/index',
+    {
+      type: 'category',
+      label: 'Overview',
+      collapsed: false,
+      items: [
+        'introduction/index',
+        'getting-started/index',
+        'getting-started/integration',
+      ],
+    },
     {
       type: 'category',
       label: 'Foundations',
+      collapsed: false,
       items: [
         'foundations/design-tokens',
+        'foundations/colors',
+        'foundations/typography',
+        'foundations/spacing',
       ],
     },
     {
       type: 'category',
       label: 'Components',
+      collapsed: false,
       items: [
         'components/button',
+        'components/input',
+        'components/checkbox',
+        'components/stack',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'API reference',
+      collapsed: true,
+      items: [
         // AUTO-GENERATED COMPONENTS START
         'components/auto-generated/button',
         'components/auto-generated/checkbox',

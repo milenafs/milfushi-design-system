@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Lint, Test & Type Check
+    name: Lint, Test, Type Check & Build
 
     steps:
       - name: Checkout code
@@ -31,3 +31,6 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+      - name: Build packages and docs site
+        run: npm run build

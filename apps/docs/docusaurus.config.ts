@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Milfushi Design System',
   tagline: 'Reusable React components and foundations for building consistent interfaces',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -33,6 +33,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          editUrl:
+            'https://github.com/milenafs/milfushi-design-system/tree/master/apps/docs/',
         },
         blog: false,
         theme: {
@@ -43,12 +45,28 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.png',
+    metadata: [
+      {
+        name: 'keywords',
+        content:
+          'design system, react, typescript, component library, ui components',
+      },
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
     navbar: {
-      title: 'Milfushi Design System',
+      title: 'Milfushi',
       logo: {
         alt: 'Milfushi Design System',
         src: 'img/logo.svg',
@@ -59,6 +77,30 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Documentation',
+        },
+        {
+          to: '/docs/foundations/design-tokens',
+          position: 'left',
+          label: 'Foundations',
+        },
+        {
+          to: '/docs/components/button',
+          position: 'left',
+          label: 'Components',
+        },
+        {
+          href: 'https://www.npmjs.com/package/@milfushi/ui',
+          position: 'right',
+          label: 'npm',
+          className: 'navbar__item--icon navbar__item--npm',
+          'aria-label': '@milfushi/ui on npm',
+        },
+        {
+          href: 'https://github.com/milenafs/milfushi-design-system',
+          position: 'right',
+          label: 'GitHub',
+          className: 'navbar__item--icon navbar__item--github',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
@@ -77,8 +119,63 @@ const config: Config = {
               to: '/docs/getting-started',
             },
             {
-              label: 'Components',
+              label: 'Integration Guide',
+              to: '/docs/getting-started/integration',
+            },
+          ],
+        },
+        {
+          title: 'Foundations',
+          items: [
+            {
+              label: 'Design Tokens',
+              to: '/docs/foundations/design-tokens',
+            },
+            {
+              label: 'Colors',
+              to: '/docs/foundations/colors',
+            },
+            {
+              label: 'Typography',
+              to: '/docs/foundations/typography',
+            },
+            {
+              label: 'Spacing & Layout',
+              to: '/docs/foundations/spacing',
+            },
+          ],
+        },
+        {
+          title: 'Components',
+          items: [
+            {
+              label: 'Button',
               to: '/docs/components/button',
+            },
+            {
+              label: 'Input',
+              to: '/docs/components/input',
+            },
+            {
+              label: 'Checkbox',
+              to: '/docs/components/checkbox',
+            },
+            {
+              label: 'Stack',
+              to: '/docs/components/stack',
+            },
+          ],
+        },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/milenafs/milfushi-design-system',
+            },
+            {
+              label: 'npm package',
+              href: 'https://www.npmjs.com/package/@milfushi/ui',
             },
           ],
         },
@@ -87,7 +184,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.oneDark,
     },
   } satisfies Preset.ThemeConfig,
 };

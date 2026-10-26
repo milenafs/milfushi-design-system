@@ -1,42 +1,63 @@
 .preview {
-  margin: 2rem 0;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
+  margin: 1.75rem 0;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
   overflow: hidden;
-  background: var(--ifm-background-color);
+  background: var(--ds-surface-raised);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.header {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--ds-border);
+  background: var(--ds-surface-subtle);
 }
 
 .title {
-  padding: 1rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
   color: var(--ifm-color-emphasis-900);
 }
 
 .description {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  font-size: 0.875rem;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: var(--ifm-color-emphasis-700);
 }
 
+/* The rendered example sits on a dotted stage so transparent components
+   and their spacing stay readable. */
 .renderArea {
-  padding: 2rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
   display: flex;
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 60px;
+  min-height: 92px;
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--ds-border);
+  background-image: radial-gradient(
+    var(--ds-border-strong) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
 }
 
-.preview :global(pre) {
+.renderAreaStacked {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Give the code block the card's flat bottom edge */
+.code :global(.theme-code-block) {
   margin: 0;
+  border: 0;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.code :global(pre) {
   border-radius: 0;
-  border: none;
-}
-
-.preview :global(.codeBlockContainer_node_modules-@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module) {
-  margin: 0;
+  font-size: 0.84rem;
 }

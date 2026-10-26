@@ -15,7 +15,10 @@ const config: Config = {
   },
 
   url: 'https://milenafs.github.io',
-  baseUrl: '/milfushi-design-system/',
+  // Pull request previews are served from a subdirectory of the Pages site,
+  // and Docusaurus bakes the base path in at build time, so the preview
+  // workflow overrides this. See .github/workflows/preview-docs.yml.
+  baseUrl: process.env.DOCS_BASE_URL ?? '/milfushi-design-system/',
 
   onBrokenLinks: 'throw',
 

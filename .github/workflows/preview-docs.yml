@@ -60,4 +60,9 @@ jobs:
           source-dir: apps/docs/build
           preview-branch: gh-pages
           umbrella-dir: pr-preview
-          wait-for-pages-deployment: true
+          # Waiting for the Pages deployment only works once Pages is served
+          # from this branch; until then there is no deployment to wait for and
+          # the step would fail a preview that deployed fine. Turn this on once
+          # the branch is the Pages source, to have the comment appear only
+          # after the preview is reachable.
+          wait-for-pages-deployment: false

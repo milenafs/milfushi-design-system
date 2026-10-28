@@ -5,6 +5,9 @@
       "dependsOn": [
         "^build"
       ],
+      "env": [
+        "DOCS_BASE_URL"
+      ],
       "outputs": [
         "dist/**",
         "storybook-static/**",

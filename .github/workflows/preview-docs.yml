@@ -1,0 +1,68 @@
+name: Deploy Documentation Preview
+
+on:
+  pull_request:
+    types: ["opened", "reopened", "synchronize", "closed"]
+    paths:
+      - "apps/docs/**"
+      - "packages/ui/**"
+      - "scripts/generate-component-docs.js"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/preview-docs.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: "preview-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    name: Build & Deploy Preview
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        if: github.event.action != 'closed'
+        with:
+          node-version: "22.x"
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: npm ci
+
+      - name: Generate Component Docs
+        if: github.event.action != 'closed'
+        run: npm run generate-docs
+
+      - name: Build UI package
+        if: github.event.action != 'closed'
+        run: npm run build --workspace=packages/ui
+
+      - name: Build documentation
+        if: github.event.action != 'closed'
+        # Docusaurus resolves every asset and link against baseUrl at build
+        # time, so the preview has to be built for the path it is served from.
+        env:
+          DOCS_BASE_URL: "/milfushi-design-system/pr-preview/pr-${{ github.event.number }}/"
+        run: npm run build --workspace=apps/docs
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1.8.1
+        with:
+          source-dir: apps/docs/build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          # Waiting for the Pages deployment only works once Pages is served
+          # from this branch; until then there is no deployment to wait for and
+          # the step would fail a preview that deployed fine. Turn this on once
+          # the branch is the Pages source, to have the comment appear only
+          # after the preview is reachable.
+          wait-for-pages-deployment: false
